@@ -2,6 +2,7 @@
 title: "Homework-Week-6"
 output: html_document
 ---
+#1
 ```{r}
 z.prop.test <- function(p1, p2, p0, n1, n2, alternative = "two.tailed", alpha = 0.05, k = 1000){
  p <- rep(NA, k)
@@ -84,7 +85,7 @@ cv
 
 return(z)
 return(cv)
-#I'm trying to find out how to get the right responce here but something isn't working.
+#I'm trying to find out how to get the right responces here but something isn't working. I also dont know how to get the appropreate p value for each of the different casses but I'm still working on this. This homework is kind of hard. I'm still working on part two.
 }
 ```
   
