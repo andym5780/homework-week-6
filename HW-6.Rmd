@@ -1,0 +1,90 @@
+---
+title: "Homework-Week-6"
+output: html_document
+---
+```{r}
+z.prop.test <- function(p1, p2, p0, n1, n2, alternative = "two.tailed", alpha = 0.05, k = 1000){
+ p <- rep(NA, k)
+ for (i in 1:k){
+  p2 <- NULL
+  n2 <- NULL
+  
+  z <- (p2-p1)/sqrt((p0*(1-p0))*((1/n1)+(1/n2)))
+  z1p <- (p1-p0)/(sqrt((p0*(1-p0))/n1))
+  if (alternative == "less") {
+            p[i] <- pnorm(z, lower.tail = TRUE)
+  }
+   if (alternative == "greater") {
+            p[i] <- pnorm(z, lower.tail = FALSE)}
+  if (alternative == "two.tailed") {
+            if (z > 0) 
+                {
+                  p[i] <- 2 * pnorm(z, lower.tail = FALSE)
+            }
+    if (z < 0) 
+                {
+                  p[i] <- 2 * pnorm(z, lower.tail = TRUE)
+    }
+  }
+ }
+if (p2 == NULL){
+  z1p
+}
+ if (alternative == "less") {
+            p[i] <- pnorm(z1p, lower.tail = TRUE)
+ }
+ if (alternative == "greater") {
+            p[i] <- pnorm(z1p, lower.tail = FALSE)
+ }
+ if (alternative == "two.tailed") {
+            if (z > 0) 
+                {
+                  p[i] <- 2 * pnorm(z1p, lower.tail = FALSE)
+                }  
+            if (z < 0) 
+                {
+                  p[i] <- 2 * pnorm(z1p, lower.tail = TRUE)
+                } 
+        }
+
+if (n2 == NULL){
+  z1p
+}
+ if (alternative == "less") {
+            p[i] <- pnorm(z1p, lower.tail = TRUE)
+ }
+ if (alternative == "greater") {
+            p[i] <- pnorm(z1p, lower.tail = FALSE)
+ }
+ if (alternative == "two.tailed") {
+            if (z > 0) 
+                {
+                  p[i] <- 2 * pnorm(z1p, lower.tail = FALSE)
+                }  
+            if (z < 0) 
+                {
+                  p[i] <- 2 * pnorm(z1p, lower.tail = TRUE)
+                } 
+        }
+if (n1*p1 > 5){"warning: n*p is less than 5 it fails the assumption that it is normal" }
+if (n1*(1-p1) >5){"warning: n*(1-p) is less than it fails the assumption that it is normal"}
+
+a <- 0.05 #this is alpha
+cva <- qnorm(1-a/2)
+cvofp1<-((p1*(1-p1))/n1)
+cvofp2<-((p2*(1-p2))/n2)
+cvsqrt<-sqrt(cvofp1+cvofp2)
+se<-cva*cvsqrt
+p1p2 <- p1+p2
+cvlower<- p1p2-se
+cvupper <- p1p2+se
+cv <- c(cvlower, cvupper)
+cv
+
+
+return(z)
+return(cv)
+#I'm trying to find out how to get the right responce here but something isn't working.
+}
+```
+  
