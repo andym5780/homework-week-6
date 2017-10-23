@@ -206,6 +206,98 @@ return(cv)
 #I'm trying to find out how to get the right responces here but something isn't working. I also dont know how to get the appropreate p value for each of the different casses but I'm still working on this. This homework is kind of hard. I'm still working on part two.
 }</code></pre>
 </div>
+<div id="section-1" class="section level1">
+<h1>2</h1>
+<pre class="r"><code>library(curl)
+f &lt;- curl(&quot;https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN597_Fall17/KamilarAndCooperData.csv&quot;)
+d &lt;- read.csv(f, header = TRUE, sep = &quot;,&quot;, stringsAsFactors = FALSE)
+head(d)</code></pre>
+<pre><code>##               Scientific_Name          Family          Genus      Species
+## 1 Allenopithecus_nigroviridis Cercopithecidae Allenopithecus nigroviridis
+## 2         Allocebus_trichotis Cercopithecidae      Allocebus    trichotis
+## 3           Alouatta_belzebul        Atelidae       Alouatta     belzebul
+## 4             Alouatta_caraya        Atelidae       Alouatta       caraya
+## 5            Alouatta_guariba        Atelidae       Alouatta      guariba
+## 6           Alouatta_palliata        Atelidae       Alouatta     palliata
+##   Brain_Size_Species_Mean Brain_Size_Female_Mean   Brain_size_Ref
+## 1                   58.02                  53.70 Isler et al 2008
+## 2                      NA                     NA                 
+## 3                   52.84                  51.19 Isler et al 2008
+## 4                   52.63                  47.80 Isler et al 2008
+## 5                   51.70                  49.08 Isler et al 2008
+## 6                   49.88                  48.04 Isler et al 2008
+##   Body_mass_male_mean Body_mass_female_mean Mass_Dimorphism
+## 1                6130                  3180           1.928
+## 2                  92                    84           1.095
+## 3                7270                  5520           1.317
+## 4                6525                  4240           1.539
+## 5                5800                  4550           1.275
+## 6                7150                  5350           1.336
+##                 Mass_Ref MeanGroupSize AdultMales AdultFemale
+## 1       Isler et al 2008            NA         NA          NA
+## 2 Smith and Jungers 1997          1.00       1.00         1.0
+## 3       Isler et al 2008          7.00       1.00         1.0
+## 4       Isler et al 2008          8.00       2.30         3.3
+## 5       Isler et al 2008          6.53       1.37         2.2
+## 6       Isler et al 2008         12.00       2.90         6.3
+##   AdultSexRatio
+## 1            NA
+## 2            NA
+## 3          1.00
+## 4          1.43
+## 5          1.61
+## 6          2.17
+##                                                     Social_Organization_Ref
+## 1                                                                          
+## 2                                                             Kappeler 1997
+## 3                                                       Campbell et al 2007
+## 4 van Schaik et al. 1999; Kappeler and Pereira 2003; Nunn &amp; van Schaik 2000
+## 5                                                       Campbell et al 2007
+## 6 van Schaik et al. 1999; Kappeler and Pereira 2003; Nunn &amp; van Schaik 2000
+##   InterbirthInterval_d Gestation WeaningAge_d MaxLongevity_m LitterSz
+## 1                   NA        NA       106.15          276.0     1.01
+## 2                   NA        NA           NA             NA     1.00
+## 3                   NA        NA           NA             NA       NA
+## 4               337.62       187       323.16          243.6     1.01
+## 5                   NA        NA           NA             NA       NA
+## 6               684.37       186       495.60          300.0     1.02
+##    Life_History_Ref GR_MidRangeLat_dd Precip_Mean_mm Temp_Mean_degC
+## 1 Jones et al. 2009             -0.17         1574.0           25.2
+## 2                              -16.59         1902.3           20.3
+## 3                               -6.80         1643.5           24.9
+## 4 Jones et al. 2009            -20.34         1166.4           22.9
+## 5                              -21.13         1332.3           19.6
+## 6 Jones et al. 2009              6.95         1852.6           23.7
+##   AET_Mean_mm PET_Mean_mm       Climate_Ref HomeRange_km2
+## 1      1517.8      1589.4 Jones et al. 2009            NA
+## 2      1388.2      1653.7 Jones et al. 2009            NA
+## 3      1286.6      1549.8 Jones et al. 2009            NA
+## 4      1193.1      1404.9 Jones et al. 2009            NA
+## 5      1225.7      1332.2 Jones et al. 2009          0.03
+## 6      1300.0      1633.9 Jones et al. 2009          0.19
+##        HomeRangeRef DayLength_km     DayLengthRef Territoriality Fruit
+## 1                             NA                              NA    NA
+## 2                             NA                              NA    NA
+## 3                             NA                              NA  57.3
+## 4                           0.40 Nunn et al. 2003             NA  23.8
+## 5 Jones et al. 2009           NA                              NA   5.2
+## 6 Jones et al. 2009         0.32 Nunn et al. 2003         0.6506  33.1
+##   Leaves Fauna             DietRef1 Canine_Dimorphism
+## 1                                               2.210
+## 2                                                  NA
+## 3   19.1   0.0 Campbell et al. 2007             1.811
+## 4   67.7   0.0 Campbell et al. 2007             1.542
+## 5   73.0   0.0 Campbell et al. 2007             1.783
+## 6   56.4   0.0 Campbell et al. 2007             1.703
+##   Canine_Dimorphism_Ref  Feed  Move  Rest Social  Activity_Budget_Ref
+## 1   Plavcan &amp; Ruff 2008    NA    NA    NA     NA                     
+## 2                          NA    NA    NA     NA                     
+## 3   Plavcan &amp; Ruff 2008 13.75 18.75 57.30  10.00 Campbell et al. 2007
+## 4   Plavcan &amp; Ruff 2008 15.90 17.60 61.60   4.90 Campbell et al. 2007
+## 5   Plavcan &amp; Ruff 2008 18.33 14.33 64.37   3.00 Campbell et al. 2007
+## 6   Plavcan &amp; Ruff 2008 17.94 12.32 66.14   3.64 Campbell et al. 2007</code></pre>
+<p>This is as far as I got as of 2, any changes after this were done after , and anything above this that is changed will have a note saying it was changed after</p>
+</div>
 
 
 

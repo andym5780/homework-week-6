@@ -88,4 +88,12 @@ return(cv)
 #I'm trying to find out how to get the right responces here but something isn't working. I also dont know how to get the appropreate p value for each of the different casses but I'm still working on this. This homework is kind of hard. I'm still working on part two.
 }
 ```
-  
+#2
+```{r}
+library(curl)
+f <- curl("https://raw.githubusercontent.com/fuzzyatelin/fuzzyatelin.github.io/master/AN597_Fall17/KamilarAndCooperData.csv")
+d <- read.csv(f, header = TRUE, sep = ",", stringsAsFactors = FALSE)
+head(d)
+```
+
+This is as far as I got as of 2, any changes after this were done after , and anything above this that is changed will have a note saying it was changed after 
